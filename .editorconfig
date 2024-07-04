@@ -1,0 +1,33 @@
+# Maintains consistent styles with different editors
+# Works automatically with PyCharm
+# VSCode users need the plugin: EditorConfig for VS Code (it has a cute mouse icon)
+# See https://editorconfig.org/
+
+# top-most EditorConfig file
+root = true
+
+[*]
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+# These are PyCharm-specific
+ij_continuation_indent_size = 4
+
+
+# Python file formatting
+[*.py]
+indent_style = space
+indent_size = 4
+max_line_length = 88
+
+# Makefiles require tab indentation
+[Makefile]
+indent_style = tab
+
+# Batch files use tabs for indentation
+[*.bat]
+indent_style = tab
+
+[*.txt]
+max_line_length = 88
