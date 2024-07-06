@@ -24,6 +24,7 @@ mysql-connector = "^2.2.9"
 sqlalchemy = "^2.0.31"
 loguru = "^0.7.2"
 psycopg2 = "^2.9.9"
+pydantic = "^2.8.2"
 [tool.poetry.group.dev.dependencies]
 invoke = "*"
 ruff = ">=0.2.1"  # Location of config options changes in 0.2.1
