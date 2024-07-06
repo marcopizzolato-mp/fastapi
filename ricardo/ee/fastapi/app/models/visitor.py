@@ -8,7 +8,8 @@ class Visitor(Base):
     visitor_id = Column(Integer, primary_key=True, index=True)
     name = Column(String(100), nullable=False)
     email = Column(String(100), nullable=False)
-    visit_date = Column(Date, nullable=False)
+    visit_start_date = Column(Date, nullable=False)
+    visit_end_date = Column(Date)
     park_id = Column(Integer, ForeignKey("parks.park_id"), nullable=False)
 
     # Relationship
