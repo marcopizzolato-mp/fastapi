@@ -1,4 +1,5 @@
 from sqlalchemy import Column, Date, ForeignKey, Integer, String, Unicode
+from sqlalchemy.orm import relationship
 
 from ricardo.ee.fastapi.app.db.base import Base
 
@@ -12,3 +13,6 @@ class ConservationEffort(Base):
     start_date = Column(Date, nullable=False)
     end_date = Column(Date)
     description = Column(Unicode(500))
+
+    # Relationships
+    park = relationship("Park", back_populates="conservation_efforts")

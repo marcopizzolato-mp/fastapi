@@ -1,4 +1,5 @@
 from sqlalchemy import Column, ForeignKey, Integer, String
+from sqlalchemy.orm import relationship
 
 from ricardo.ee.fastapi.app.db.base import Base
 
@@ -10,3 +11,5 @@ class Species(Base):
     status = Column(String(50), nullable=False)
     habitat = Column(String(100), nullable=False)
     park_id = Column(Integer, ForeignKey("parks.park_id"), nullable=False)
+
+    park = relationship("Park", back_populates="species")

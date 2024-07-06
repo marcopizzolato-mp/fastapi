@@ -1,4 +1,5 @@
 from sqlalchemy import Column, Date, ForeignKey, Integer, String
+from sqlalchemy.orm import relationship
 
 from ricardo.ee.fastapi.app.db.base import Base
 
@@ -9,3 +10,6 @@ class Visitor(Base):
     email = Column(String(100), nullable=False)
     visit_date = Column(Date, nullable=False)
     park_id = Column(Integer, ForeignKey("parks.park_id"), nullable=False)
+
+    # Relationship
+    park = relationship("Park", back_populates="visitors")
