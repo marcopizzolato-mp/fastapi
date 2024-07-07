@@ -1,4 +1,4 @@
-from sqlalchemy import Column, ForeignKey, Integer, String
+from sqlalchemy import Column, Integer, String, Unicode
 from sqlalchemy.orm import relationship
 
 from ricardo.ee.fastapi.app.db.base import Base
@@ -10,6 +10,6 @@ class Species(Base):
     scientific_name = Column(String(100), nullable=False)
     status = Column(String(50), nullable=False)
     habitat = Column(String(100), nullable=False)
-    park_id = Column(Integer, ForeignKey("parks.park_id"), nullable=False)
+    description = Column(Unicode(500), nullable=False)
 
-    park_rel = relationship("Parks", back_populates="species_rel")
+    species_rel = relationship("ParksSpecies", back_populates="park_species_rel")

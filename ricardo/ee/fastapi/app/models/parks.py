@@ -14,8 +14,8 @@ class Parks(Base):
     type = Column(String(50), nullable=False)
 
     # Relationships
-    species_rel = relationship("Species", back_populates="park_rel")
-    visits_rel = relationship("Visits", back_populates="park_rel")
+    park_species_rel = relationship("ParksSpecies", back_populates="park_rel")
+    visits_rel = relationship("ParkVisits", back_populates="park_rel")
     conservation_efforts_rel = relationship(
         "ConservationEfforts", back_populates="park_rel"
     )

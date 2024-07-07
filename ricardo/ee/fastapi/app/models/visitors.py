@@ -9,4 +9,4 @@ class Visitors(Base):
     name = Column(String(100), nullable=False)
     email = Column(String(100), nullable=False)
 
-    visits_rel = relationship("Visits", back_populates="visitor_rel")
+    visits_rel = relationship("ParkVisits", back_populates="visitor_rel")
