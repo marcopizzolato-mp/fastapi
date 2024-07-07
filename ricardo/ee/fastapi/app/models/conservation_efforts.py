@@ -4,7 +4,7 @@ from sqlalchemy.orm import relationship
 from ricardo.ee.fastapi.app.db.base import Base
 
 
-class ConservationEffort(Base):
+class ConservationEfforts(Base):
     __tablename__ = "conservation_efforts"
 
     effort_id = Column(Integer, primary_key=True, index=True)
@@ -15,4 +15,4 @@ class ConservationEffort(Base):
     description = Column(Unicode(500))
 
     # Relationships
-    park = relationship("Park", back_populates="conservation_efforts")
+    park_rel = relationship("Parks", back_populates="conservation_efforts_rel")
