@@ -4,7 +4,7 @@ from sqlalchemy.orm import relationship
 from ricardo.ee.fastapi.app.db.base import Base
 
 
-class Park(Base):
+class Parks(Base):
     park_id = Column(Integer, primary_key=True, index=True)
     name = Column(String(100), nullable=False)
     location = Column(String(100), nullable=False)
@@ -14,7 +14,9 @@ class Park(Base):
     type = Column(String(50), nullable=False)
 
     # Relationships
-    species = relationship("Species", back_populates="park")
-    visitors = relationship("Visitor", back_populates="park")
-    conservation_efforts = relationship("ConservationEffort", back_populates="park")
-    facilities = relationship("Facility", back_populates="park")
+    species_rel = relationship("Species", back_populates="park_rel")
+    visits_rel = relationship("Visits", back_populates="park_rel")
+    conservation_efforts_rel = relationship(
+        "ConservationEfforts", back_populates="park_rel"
+    )
+    facilities_rel = relationship("ParkFacilities", back_populates="park_rel")
