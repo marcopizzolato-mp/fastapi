@@ -12,4 +12,4 @@ class Species(Base):
     habitat = Column(String(100), nullable=False)
     park_id = Column(Integer, ForeignKey("parks.park_id"), nullable=False)
 
-    park = relationship("Park", back_populates="species")
+    park_rel = relationship("Parks", back_populates="species_rel")
