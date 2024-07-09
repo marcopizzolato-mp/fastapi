@@ -1,6 +1,6 @@
 """Application entry point with FastAPI instance and routes."""
 
-from api.api_v1.routers.routes import api_router
+from api.api_v1.routers.routers import api_router
 
 from fastapi import FastAPI
 
