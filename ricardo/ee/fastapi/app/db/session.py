@@ -19,10 +19,16 @@ db_name = os.getenv("DEFAULT_DB_NAME")
 
 @contextmanager
 def get_db_session():
+    """Provide a database session.
+
+    Returns:
+        Database session object
+    """
+    # Database connection string
     connection_string = (
         f"postgresql+psycopg2://{db_user}:{db_password}@{db_host}/{db_name}"
     )
-    print(connection_string)
+
     engine = create_engine(
         connection_string,
         # connect_args={"check_same_thread": False}, # This is only for SQLLite
@@ -33,12 +39,10 @@ def get_db_session():
 
     session = db_session()
     logger.info("Database session opened.")
-    print("Database session opened.")
     try:
         yield session
     except Exception as e:
         logger.error(f"An error with the database occurred {e}.")
     finally:
         logger.info("Database session closed.")
-        print("Database session closed.")
         session.close()
