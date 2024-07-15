@@ -3,7 +3,7 @@ from datetime import date
 from pydantic import BaseModel
 
 
-class Parks(BaseModel):
+class ParksSchema(BaseModel):
     """Response model for Parks."""
 
     park_id: int
@@ -21,7 +21,7 @@ class Parks(BaseModel):
     park_facilities_rel: list["ParkFacilities"] | None
 
 
-class Species(BaseModel):
+class SpeciesSchema(BaseModel):
     """Response model for Species."""
 
     species_id: int
@@ -32,7 +32,7 @@ class Species(BaseModel):
     description: str
 
 
-class Visitors(BaseModel):
+class VisitorsSchema(BaseModel):
     """Response model for Visitors."""
 
     visitor_id: int
@@ -43,7 +43,7 @@ class Visitors(BaseModel):
     visits_rel: list["Visits"] | None
 
 
-class Visits(BaseModel):
+class VisitsSchema(BaseModel):
     visit_id: int
     visitor_id: int
     park_id: int
@@ -51,7 +51,7 @@ class Visits(BaseModel):
     visit_end_date: date
 
 
-class ConservationEfforts(BaseModel):
+class ConservationEffortsSchema(BaseModel):
     """Response model for ConservationEffort."""
 
     effort_id: int
@@ -62,7 +62,7 @@ class ConservationEfforts(BaseModel):
     description: str | None
 
 
-class ParkFacilities(BaseModel):
+class ParkFacilitiesSchema(BaseModel):
     """Response model for ParkFacilities."""
 
     facility_id: int
