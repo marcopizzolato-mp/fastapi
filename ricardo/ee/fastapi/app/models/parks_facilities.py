@@ -5,6 +5,8 @@ from ricardo.ee.fastapi.app.db.base import Base
 
 
 class ParkFacilities(Base):
+    """ORM Model for parks facilities table."""
+
     __tablename__ = "park_facilities"
 
     facility_id = Column(Integer, primary_key=True, index=True)

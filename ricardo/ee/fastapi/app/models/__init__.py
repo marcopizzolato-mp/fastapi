@@ -1,3 +1,5 @@
+"""Init file for ORM Models"""
+
 from .conservation_efforts import ConservationEfforts
 from .parks import Parks
 from .parks_facilities import ParkFacilities

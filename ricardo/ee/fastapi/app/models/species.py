@@ -5,6 +5,8 @@ from ricardo.ee.fastapi.app.db.base import Base
 
 
 class Species(Base):
+    """ORM Model for Species table."""
+
     species_id = Column(Integer, primary_key=True, index=True)
     common_name = Column(String(100), nullable=False)
     scientific_name = Column(String(100), nullable=False)

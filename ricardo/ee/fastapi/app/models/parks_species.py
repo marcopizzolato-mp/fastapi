@@ -5,6 +5,8 @@ from ricardo.ee.fastapi.app.db.base import Base
 
 
 class ParksSpecies(Base):
+    """ORM Model for park species table."""
+
     __tablename__ = "parks_species"
 
     park_species_id = Column(Integer, primary_key=True, index=True)
