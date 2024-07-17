@@ -1,3 +1,5 @@
+"""ORM Model."""
+
 from sqlalchemy import Column, Date, Float, Integer, String, Unicode
 from sqlalchemy.orm import relationship
 

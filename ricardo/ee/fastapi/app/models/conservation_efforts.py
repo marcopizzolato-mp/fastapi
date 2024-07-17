@@ -1,3 +1,5 @@
+"""ORM Model."""
+
 from sqlalchemy import Column, Date, ForeignKey, Integer, String, Unicode
 from sqlalchemy.orm import relationship
 
@@ -5,6 +7,8 @@ from ricardo.ee.fastapi.app.db.base import Base
 
 
 class ConservationEfforts(Base):
+    """ORM Model for conservation efforts table."""
+
     __tablename__ = "conservation_efforts"
 
     effort_id = Column(Integer, primary_key=True, index=True)
