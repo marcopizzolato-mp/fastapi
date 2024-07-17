@@ -1,4 +1,4 @@
-"""create tables parks species visitors conservation facilities
+"""create tables parks species visitors conservation facilities.
 
 Revision ID: 3220c42dd31e
 Revises: 6414c769b1ba
@@ -20,6 +20,7 @@ depends_on: str | Sequence[str] | None = None
 
 
 def upgrade() -> None:
+    """Upgrade database."""
     op.create_table(
         "parks",
         sa.Column("park_id", sa.Integer, primary_key=True),
@@ -79,6 +80,7 @@ def upgrade() -> None:
 
 
 def downgrade() -> None:
+    """Downgrade database."""
     op.drop_table("park_facilities")
     op.drop_table("conservation_efforts")
     op.drop_table("visitors")

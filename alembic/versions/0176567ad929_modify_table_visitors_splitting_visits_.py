@@ -1,4 +1,4 @@
-"""modify table visitors splitting visits in their own table
+"""modify table visitors splitting visits in their own table.
 
 Revision ID: 0176567ad929
 Revises: 08ffd8f8878a
@@ -20,6 +20,7 @@ depends_on: str | Sequence[str] | None = None
 
 
 def upgrade() -> None:
+    """Upgrade database."""
     # Remove columns from visitor table
     op.drop_column("visitors", "visit_start_date")
     op.drop_column("visitors", "visit_end_date")
@@ -43,6 +44,7 @@ def upgrade() -> None:
 
 
 def downgrade() -> None:
+    """Downgrade database."""
     op.add_column("visitors", sa.Column("visit_start_date", sa.Date, nullable=False))
     op.add_column("visitors", sa.Column("visit_end_date", sa.Date))
     op.add_column(
