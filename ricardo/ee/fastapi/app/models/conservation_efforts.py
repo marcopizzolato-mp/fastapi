@@ -4,6 +4,7 @@ from sqlalchemy import Column, Date, ForeignKey, Integer, String, Unicode
 from sqlalchemy.orm import relationship
 
 from ricardo.ee.fastapi.app.models.base import Base
+from ricardo.ee.fastapi.app.models.parks import Parks
 
 
 class ConservationEfforts(Base):
@@ -12,7 +13,7 @@ class ConservationEfforts(Base):
     __tablename__ = "conservation_efforts"
 
     effort_id = Column(Integer, primary_key=True, index=True)
-    park_id = Column(Integer, ForeignKey("parks.park_id"), nullable=False)
+    park_id = Column(Integer, ForeignKey(Parks.park_id), nullable=False)
     effort_name = Column(String(100), nullable=False)
     start_date = Column(Date, nullable=False)
     end_date = Column(Date)
