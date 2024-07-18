@@ -5,7 +5,7 @@ from sqlalchemy.orm import Session
 
 from ricardo.ee.fastapi.app.db.session import get_db_session_dep
 from ricardo.ee.fastapi.app.db.utils import query_table_as_dataframe
-from ricardo.ee.fastapi.app.models import Parks
+from ricardo.ee.fastapi.app.models.parks import Parks
 from ricardo.ee.fastapi.app.schemas.schemas import ParksSchema
 
 from fastapi import APIRouter, Depends, HTTPException, Response, status
