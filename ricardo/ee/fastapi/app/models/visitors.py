@@ -3,7 +3,7 @@
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import relationship
 
-from ricardo.ee.fastapi.app.db.base import Base
+from ricardo.ee.fastapi.app.models.base import Base
 
 
 class Visitors(Base):

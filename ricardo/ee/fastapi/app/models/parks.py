@@ -3,7 +3,7 @@
 from sqlalchemy import Column, Date, Float, Integer, String, Unicode
 from sqlalchemy.orm import relationship
 
-from ricardo.ee.fastapi.app.db.base import Base
+from ricardo.ee.fastapi.app.models.base import Base
 
 
 class Parks(Base):
