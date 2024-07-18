@@ -1,3 +1,5 @@
+"""Pydantic modules."""
+
 from datetime import date
 
 from pydantic import BaseModel
@@ -15,10 +17,10 @@ class ParksSchema(BaseModel):
     type: str
 
     # Fields from the Relationships
-    species_rel: list["Species"] | None
-    visitors_rel: list["Visitors"] | None
-    conservation_efforts_rel: list["ConservationEfforts"] | None
-    park_facilities_rel: list["ParkFacilities"] | None
+    species_rel: list["SpeciesSchema"] | None
+    visitors_rel: list["VisitorsSchema"] | None
+    conservation_efforts_rel: list["ConservationEffortsSchema"] | None
+    park_facilities_rel: list["ParkFacilitiesSchema"] | None
 
 
 class SpeciesSchema(BaseModel):
@@ -40,10 +42,12 @@ class VisitorsSchema(BaseModel):
     email: str
 
     # Fields from the Relationships
-    visits_rel: list["Visits"] | None
+    visits_rel: list["VisitsSchema"] | None
 
 
 class VisitsSchema(BaseModel):
+    """Response model for Visits."""
+
     visit_id: int
     visitor_id: int
     park_id: int
@@ -70,3 +74,6 @@ class ParkFacilitiesSchema(BaseModel):
     facility_type: str
     name: str
     description: str | None
+
+    # class Config:
+    #     orm_mode = True
