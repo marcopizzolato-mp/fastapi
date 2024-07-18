@@ -1,10 +1,11 @@
 """Base class for SQLAlchemy models."""
 
-from sqlalchemy.ext.declarative import as_declarative, declared_attr
+from sqlalchemy.orm import DeclarativeBase, declared_attr
+
+from ricardo.ee.fastapi.app.db.session import engine
 
 
-@as_declarative()
-class Base:
+class Base(DeclarativeBase):
     """Base class for SQLAlchemy models.
 
     This base class automatically generates the `__tablename__` attribute
@@ -15,9 +16,6 @@ class Base:
     class for custom names.
     """
 
-    __name__: str
-
-    # Generate __tablename__ automatically from the Class name
     @declared_attr
     def __tablename__(cls):  # noqa ANN204
         """Automatically generate the `__tablename__` attribute from the class name.
@@ -29,3 +27,24 @@ class Base:
             str: The table name derived from the class name, converted to lowercase.
         """
         return cls.__name__.lower()
+
+    @declared_attr
+    def __table_args__(cls):  # noqa ANN204
+        """Set the schema for the table.
+
+        Args:
+            cls: The class for which the schema is being set.
+
+        Returns:
+            dict: A dictionary containing the schema name.
+        """
+        return {"schema": "test"}  # Specify the schema here
+
+
+def init_db() -> None:
+    """Initialize the database using the Metadata creating tables if they don't exist.
+
+    Returns:
+        None
+    """
+    Base.metadata.create_all(bind=engine)
