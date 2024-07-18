@@ -1,7 +1,7 @@
-"""Database utils functions"""
+"""Database utils functions."""
 
 from collections.abc import Sequence
-from typing import Any, Literal
+from typing import Literal
 
 from loguru import logger
 import pandas as pd
@@ -9,7 +9,7 @@ from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import Session
 from sqlalchemy.sql.selectable import Select
 
-from ricardo.ee.fastapi.app.db.base import Base
+from ricardo.ee.fastapi.app.models.base import Base
 
 
 def query_table_as_dataframe(db_session: Session, orm_query: Select) -> pd.DataFrame:
@@ -26,9 +26,10 @@ def query_table_as_dataframe(db_session: Session, orm_query: Select) -> pd.DataF
         return pd.read_sql_query(orm_query, db_session.bind)
     except SQLAlchemyError as err:
         logger.error(f"SQLAlchemy error {err}")
+        return pd.DataFrame()
 
 
-def query_column_as_list(db_session: Session, orm_query: Select) -> Sequence:
+def query_column_as_list(db_session: Session, orm_query: Select) -> Sequence | None:
     """Execute sqlalchemy query and return the column as a sequence.
 
     The function verifies only one column is queried.
@@ -47,9 +48,10 @@ def query_column_as_list(db_session: Session, orm_query: Select) -> Sequence:
         return db_session.execute(orm_query).scalars().all()
     except SQLAlchemyError as err:
         logger.error(f"SQLAlchemy error {err}")
+        return None
 
 
-def query_value_as_scalar(db_session: Session, orm_query: Select) -> Any:
+def query_value_as_scalar(db_session: Session, orm_query: Select) -> int | float | None:
     """Execute sqlalchemy query and return the value as a scalar.
 
     Args:
@@ -60,9 +62,10 @@ def query_value_as_scalar(db_session: Session, orm_query: Select) -> Any:
         Cell value as Scalar value
     """
     try:
-        return db_session.execute(orm_query).one_or_none()
+        return db_session.execute(orm_query).scalar_one()
     except SQLAlchemyError as err:
         logger.error(f"SQLAlchemy error {err}")
+        return None
 
 
 def insert_dataframe_into_db(
@@ -100,3 +103,4 @@ def insert_dataframe_into_db(
         return True
     except SQLAlchemyError as err:
         logger.error(f"SQLAlchemy error {err}")
+        return False
