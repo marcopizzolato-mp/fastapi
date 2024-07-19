@@ -4,10 +4,10 @@ import logging
 
 
 class ApiLogHandler(logging.StreamHandler):
-    """A custom handler class for the API server which writes logs to a stream."""
+    """Custom log handler class for the API server which writes logs to a stream."""
 
     def __init__(self) -> None:
-        """Initialize the handler with an empty queue."""
+        """Initialise the handler with an empty queue."""
         logging.StreamHandler.__init__(self)
         self.queue: list[str] = []
 
