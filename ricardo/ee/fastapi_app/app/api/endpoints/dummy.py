@@ -7,7 +7,7 @@ from sqlalchemy.orm import Session
 from ricardo.ee.fastapi_app.app.db.db_utils import query_table_as_dataframe
 from ricardo.ee.fastapi_app.app.db.session import get_db_session_dep
 from ricardo.ee.fastapi_app.app.models.dummy_orm import Dummy
-from ricardo.ee.fastapi_app.app.schemas.schemas import VisitorsSchema
+from ricardo.ee.fastapi_app.app.schemas.schemas import DummySchema
 
 dummy_router = APIRouter()
 
@@ -20,7 +20,7 @@ db_session_dependency = Depends(get_db_session_dep)
     "/dummy",
     status_code=status.HTTP_200_OK,
     summary="Get database from the database.",
-    response_model=VisitorsSchema,
+    response_model=DummySchema,
 )
 def get_dummy_data(db_session: Session = db_session_dependency) -> Response:
     """Return the content of the Dummy table in json format.
