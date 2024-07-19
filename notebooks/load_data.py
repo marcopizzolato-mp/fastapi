@@ -14,20 +14,20 @@
 
 # +
 import pandas as pd
-from ricardo.ee.fastapi.app.db.session import get_db_session
-from ricardo.ee.fastapi.app.models.parks import Parks
-                                                 
-from ricardo.ee.fastapi.app.models.parks_visits import ParkVisits
-from ricardo.ee.fastapi.app.models.visitors import Visitors
-from ricardo.ee.fastapi.app.models.species import Species
-from ricardo.ee.fastapi.app.models.parks_species import ParksSpecies
-from ricardo.ee.fastapi.app.models.parks_facilities import ParkFacilities
+from ricardo.ee.fastapi_app.app.db.session import get_db_session
+from ricardo.ee.fastapi_app.app.models.parks import Parks
+
+from ricardo.ee.fastapi_app.app.models.parks_visits import ParkVisits
+from ricardo.ee.fastapi_app.app.models.visitors import Visitors
+from ricardo.ee.fastapi_app.app.models.species import Species
+from ricardo.ee.fastapi_app.app.models.parks_species import ParksSpecies
+from ricardo.ee.fastapi_app.app.models.parks_facilities import ParkFacilities
 
 # -
 
 def upload_df_to_db(df, orm_model):
     with get_db_session() as db_session:
-        try: 
+        try:
             # Convert dataframe to list of dictionaries
             data_dict = df.to_dict(orient='records')
             # Map the data to the ORM Model
@@ -37,7 +37,7 @@ def upload_df_to_db(df, orm_model):
         except Exception as e:
             print(f"An error occurred during data upload: {e}")
             db_session.rollback()
-        
+
 
 
 # National Parks
@@ -66,7 +66,7 @@ def random_name():
         "Fabio", "Angelica", "Salvatore", "Valentina", "Alberto", "Maria", "Vincenzo", "Simona", "Cristiano", "Teresa",
         "Massimo", "Patrizia", "Angelo", "Giovanna", "Dario", "Rita", "Claudio", "Michela", "Giorgio", "Silvia"
     ]
-    
+
     italian_last_names = [
         "Rossi", "Russo", "Ferrari", "Esposito", "Bianchi", "Romano", "Colombo", "Ricci", "Marino", "Greco",
         "Bruno", "Gallo", "Conti", "De Luca", "Costa", "Giordano", "Mancini", "Rizzo", "Lombardi", "Moretti",
@@ -82,7 +82,7 @@ def random_name():
 
     # Create a list of 100 full names by combining first names and last names
     return [(i,f"{random.choice(italian_first_names)} {random.choice(italian_last_names)}") for i in range(1,501)]
-                              
+
 # Generate Visitors
 def generate_visitors_with_patterns(num_records, start_date, end_date, parks):
     visits = []
@@ -110,13 +110,13 @@ def generate_visitors_with_patterns(num_records, start_date, end_date, parks):
         datetime(2023, 1, 1), datetime(2023, 4, 10), datetime(2023, 5, 1), datetime(2023, 6, 2), datetime(2023, 8, 15),
         datetime(2023, 11, 1)
     ]
-    
+
     for i in range(num_records):
         # visitor_id = random.choice(visitor_ids)
         visitor_id, name = random.choice(visitor_names_list)
         park_id = int(random.choice(parks["park_id"]))
         visitor_date = random_date(start_date, end_date)
-        
+
         # Randomly select a date
         if random.random() < 0.15:  # 10% chance to fall on a holiday
             visitor_start_date = random.choice(holidays)
@@ -126,22 +126,22 @@ def generate_visitors_with_patterns(num_records, start_date, end_date, parks):
             summer_end = datetime(visitor_date.year, 9, 30)
             visitor_start_date = random_date(summer_start, summer_end)
             # Ensure the end date is within 7 days of the start date
-            visitor_end_date = visitor_start_date + timedelta(days=random.randint(0, 7))        
+            visitor_end_date = visitor_start_date + timedelta(days=random.randint(0, 7))
         else:
             visitor_start_date = visitor_date
-            visitor_end_date = visitor_date + timedelta(days=random.randint(0, 7))  
-        
+            visitor_end_date = visitor_date + timedelta(days=random.randint(0, 7))
+
         # Decrease visits during COVID-19 in 2020
         if visitor_date.year == 2020 and random.random() < 0.7:  # 70% chance to skip
             continue
-        
+
         visits.append({
             "visitor_id":visitor_id,
             "park_id": park_id,
             "visit_start_date": visitor_start_date,
             "visit_end_date": visitor_end_date,
         })
-    
+
     return visits, visitors_df
 
 # Generate the data with patterns
@@ -159,10 +159,10 @@ visits_df = pd.DataFrame(visits_data_with_patterns)
 visits_df.to_csv("../data/visits.csv", index=False)
 # -
 
-visits_df = pd.DataFrame("../data/visits.csv")    
+visits_df = pd.DataFrame("../data/visits.csv")
 upload_df_to_db(visits_df, ParkVisits)
 
-visitors_df = pd.DataFrame("../data/visitors.csv")    
+visitors_df = pd.DataFrame("../data/visitors.csv")
 upload_df_to_db(visitors_df, Visitors)
 
 species_data_df = pd.read_csv("../data/species_data.csv")
