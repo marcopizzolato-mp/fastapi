@@ -19,9 +19,7 @@ db_user = os.getenv("DEFAULT_POSTGRES_USER")
 db_password = os.getenv("DEFAULT_POSTGRES_PASSWORD")
 db_name = os.getenv("DEFAULT_DB_NAME")
 
-# Database connection string
 connection_string = f"postgresql+psycopg2://{db_user}:{db_password}@{db_host}/{db_name}"
-
 engine = create_engine(
     connection_string,
     echo=True,
