@@ -5,6 +5,14 @@ from datetime import date
 from pydantic import BaseModel
 
 
+class DummySchema(BaseModel):
+    """Response model for Dummy."""
+
+    unique_id: int
+    created_at: date
+    modified_at: date
+
+
 class ParksSchema(BaseModel):
     """Response model for Parks."""
 
