@@ -26,9 +26,6 @@ def init_app() -> FastAPI:
         allow_headers=["*"],
     )
 
-    # Initialize the database
-    init_db()
-
     # Remove the default handler and add a new one with log level set to INFO
     logger.remove()
     logger.add(sys.stderr, level="INFO")
@@ -44,9 +41,13 @@ def init_app() -> FastAPI:
             "<level>{message}</level>"
         ),
     )
+
     return app
 
 
+# Initialise the database
+init_db()
+# Initialise FastAPI App
 app = init_app()
 app.include_router(api_router, prefix="/api")
 
