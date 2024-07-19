@@ -9,7 +9,7 @@ from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import Session
 from sqlalchemy.sql.selectable import Select
 
-from ricardo.ee.fastapi.app.models.base import Base
+from ricardo.ee.fastapi_app.app.models.base import Base
 
 
 def query_table_as_dataframe(db_session: Session, orm_query: Select) -> pd.DataFrame:

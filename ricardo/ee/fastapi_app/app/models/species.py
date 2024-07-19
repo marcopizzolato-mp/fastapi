@@ -3,7 +3,7 @@
 from sqlalchemy import Column, Integer, String, Unicode
 from sqlalchemy.orm import relationship
 
-from ricardo.ee.fastapi.app.models.base import Base
+from ricardo.ee.fastapi_app.app.models.base import Base
 
 
 class Species(Base):

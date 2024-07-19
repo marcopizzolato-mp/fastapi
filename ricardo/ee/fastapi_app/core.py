@@ -1,7 +1,7 @@
 """Placeholder module for core functionality of the project.
 
 Example usage:
-    from ricardo.ee.fastapi.core import main
+    from ricardo.ee.fastapi_app.core import main
 
     main()
 """

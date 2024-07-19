@@ -1,14 +1,13 @@
 """FastAPI endpoints for Visitors."""
 
+from fastapi import APIRouter, Depends, Response, status
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
-from ricardo.ee.fastapi.app.db.session import get_db_session_dep
-from ricardo.ee.fastapi.app.db.utils import query_table_as_dataframe
-from ricardo.ee.fastapi.app.models.visitors import Visitors
-from ricardo.ee.fastapi.app.schemas.schemas import VisitorsSchema
-
-from fastapi import APIRouter, Depends, Response, status
+from ricardo.ee.fastapi_app.app.db.db_utils import query_table_as_dataframe
+from ricardo.ee.fastapi_app.app.db.session import get_db_session_dep
+from ricardo.ee.fastapi_app.app.models.visitors import Visitors
+from ricardo.ee.fastapi_app.app.schemas.schemas import VisitorsSchema
 
 visitors_router = APIRouter()
 

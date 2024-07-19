@@ -2,7 +2,7 @@
 
 from sqlalchemy.orm import DeclarativeBase, declared_attr
 
-from ricardo.ee.fastapi.app.db.session import engine
+from ricardo.ee.fastapi_app.app.db.session import engine
 
 
 class Base(DeclarativeBase):
@@ -38,7 +38,7 @@ class Base(DeclarativeBase):
         Returns:
             dict: A dictionary containing the schema name.
         """
-        return {"schema": "test"}  # Specify the schema here
+        return {"schema": "public"}  # Specify the schema here
 
 
 def init_db() -> None:

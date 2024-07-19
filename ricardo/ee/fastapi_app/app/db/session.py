@@ -7,7 +7,7 @@ from typing import TypeAlias
 
 from dotenv import load_dotenv
 from loguru import logger
-from sqlalchemy import MetaData, create_engine
+from sqlalchemy import create_engine
 from sqlalchemy.orm import Session as SQLAlchemySession
 from sqlalchemy.orm import sessionmaker
 
@@ -24,10 +24,8 @@ connection_string = f"postgresql+psycopg2://{db_user}:{db_password}@{db_host}/{d
 
 engine = create_engine(
     connection_string,
-    # connect_args={"check_same_thread": False}, # This is only for SQLLite
     echo=True,
 )
-metadata = MetaData()
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 # Define Session as a type alias for SQLAlchemy Session
