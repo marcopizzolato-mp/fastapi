@@ -1,9 +1,8 @@
 """ORM Model."""
 
+from fastapi_app.app.models.base import Base
 from sqlalchemy import Column, Date, Float, Integer, String, Unicode
 from sqlalchemy.orm import relationship
-
-from ricardo.ee.fastapi_app.app.models.base import Base
 
 
 class Parks(Base):
