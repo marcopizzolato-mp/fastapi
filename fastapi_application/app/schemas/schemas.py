@@ -19,16 +19,19 @@ class ParksSchema(BaseModel):
     park_id: int
     name: str
     location: str
-    area: float
     established_date: date
     description: str | None
     type: str
+    geometry_id: int
+    created_at: date
+    modified_at: date
 
     # Fields from the Relationships
     species_rel: list["SpeciesSchema"] | None
     visitors_rel: list["VisitorsSchema"] | None
     conservation_efforts_rel: list["ConservationEffortsSchema"] | None
     park_facilities_rel: list["ParkFacilitiesSchema"] | None
+    park_geom_rel: list["ParkGeometrySchema"] | None
 
 
 class SpeciesSchema(BaseModel):

@@ -1,8 +1,10 @@
 """ORM Model."""
 
-from fastapi_app.app.models.base import Base
-from sqlalchemy import Column, Date, Float, Integer, String, Unicode
+from sqlalchemy import Column, Date, DateTime, Integer, String, Unicode
 from sqlalchemy.orm import relationship
+from sqlalchemy.sql import func
+
+from fastapi_application.app.models.base import Base
 
 
 class Parks(Base):
@@ -11,10 +13,12 @@ class Parks(Base):
     park_id = Column(Integer, primary_key=True, index=True)
     name = Column(String(100), nullable=False)
     location = Column(String(100), nullable=False)
-    area = Column(Float, nullable=False)
     established_date = Column(Date, nullable=False)
     description = Column(Unicode(500))
     type = Column(String(50), nullable=False)
+    geometry_id = Column(Integer, nullable=False)
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+    modified_at = Column(DateTime(timezone=True), onupdate=func.now())
 
     # Relationships
     park_species_rel = relationship("ParksSpecies", back_populates="park_rel")
@@ -23,3 +27,4 @@ class Parks(Base):
         "ConservationEfforts", back_populates="park_rel"
     )
     facilities_rel = relationship("ParkFacilities", back_populates="park_rel")
+    park_geom_rel = relationship("ParkGeometry", back_populates="park_rel")
