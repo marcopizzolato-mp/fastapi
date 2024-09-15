@@ -1,5 +1,7 @@
 """Base class for SQLAlchemy models."""
 
+import re
+
 from sqlalchemy.orm import DeclarativeBase, declared_attr
 
 from fastapi_application.app.db.session import engine
@@ -20,9 +22,13 @@ class Base(DeclarativeBase):
                 cls: The class for which the table name is being generated.
 
         Returns:
-                str: The table name derived from the class name, converted to lowercase.
+                str: The table name derived from the class name, converted to lowercase
+                and concerted from CamelCase to snake_case.
         """
-        return cls.__name__.lower()
+        # Detect CamelCase and replace with underscores
+        camel_case_pattern = re.compile(r"(?<!^)(?=[A-Z])")
+        formatted_name = camel_case_pattern.sub("_", cls.__name__).lower()
+        return formatted_name
 
     # @declared_attr
     # def __table_args__(cls):  # ANN204
