@@ -1,7 +1,8 @@
 """Base class for SQLAlchemy models."""
 
-from fastapi_app.app.db.session import engine
 from sqlalchemy.orm import DeclarativeBase, declared_attr
+
+from fastapi_application.app.db.session import engine
 
 
 class Base(DeclarativeBase):
@@ -35,13 +36,7 @@ class Base(DeclarativeBase):
     #     Returns:
     #         dict: A dictionary containing the schema name.
     #     """
-    #     print(engine.dialect.name)
-    #
-    #     if engine.dialect.name != "sqlite":
-    #         return {"schema": "public"}  # Specify schema for non-SQLite engines
-    #     else:
-    #         return {}  # No schema for SQLite
-    #     # return {"schema": "public"}  # Specify the schema here
+    #     return {"schema": "public"}  # Specify the schema here
 
 
 def init_db() -> None:
