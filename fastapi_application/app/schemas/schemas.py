@@ -72,6 +72,8 @@ class ConservationEffortsSchema(BaseModel):
     start_date: date
     end_date: date | None
     description: str | None
+    created_at: date
+    modified_at: date
 
 
 class ParkFacilitiesSchema(BaseModel):
