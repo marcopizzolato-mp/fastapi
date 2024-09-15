@@ -8,7 +8,6 @@ from starlette.middleware.cors import CORSMiddleware
 
 from fastapi_application.app import api_utils
 from fastapi_application.app.api.routers.routers import api_router
-from fastapi_application.app.models.base import init_db
 
 
 def init_app() -> FastAPI:
@@ -45,8 +44,7 @@ def init_app() -> FastAPI:
     return app
 
 
-# Initialise the database
-init_db()
+
 # Initialise FastAPI App
 app = init_app()
 app.include_router(api_router, prefix="/api")
