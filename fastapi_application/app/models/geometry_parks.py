@@ -1,5 +1,7 @@
 """ORM Model."""
 
+from typing import ClassVar
+
 from geoalchemy2 import Geometry
 from sqlalchemy import Column, DateTime, ForeignKey, Integer
 from sqlalchemy.orm import relationship
@@ -12,7 +14,7 @@ from fastapi_application.app.models.base import Base
 class GeometryParks(Base):
     """ORM Model for Parks Geometry table."""
 
-    __table_args__ = {"schema": "natural_parks_schema"}
+    __table_args__: ClassVar[dict] = {"schema": "natural_parks_schema"}
 
     park_id = Column(Integer, ForeignKey(Parks.park_id), primary_key=True)
     geometry = Column(Geometry("POLYGON"))
