@@ -1,19 +1,17 @@
 [tool.poetry]
-name = "ricardo-ee-fastapi"
+name = "fastapi_application"
 version = "0.0.1"
 description = "Example project using FastAPI"
 authors = [
-    "Marco P. <Marco.P.@ricardo.com>",
+    "Marco P. <contact@marcopizzolato.com>",
 ]
 readme = "README.md"
-repository = "https://gitlab.rcdo.co.uk/data-science/examples/fastapi"
+repository = "https://github.com/marcopizzolato-mp/fastapi-natural-parks"
 include = []
 exclude = [
     "tests/**/*",
 ]
-packages = [
-    { include = "ricardo" },
-]
+packages = []
 
 [tool.poetry.dependencies]
 python = ">=3.10,<4.0"
@@ -53,11 +51,6 @@ jupytext = "*"
 
 [tool.jupytext]
 formats = "ipynb,py:percent"
-
-[[tool.poetry.source]]
-name = "Nexus"
-url = "https://nexus.rcdo.co.uk:9443/repository/pypi-group/simple/"
-priority="primary"
 
 [tool.coverage.run]
 branch = true
@@ -157,8 +150,5 @@ mypy-init-return = true
 ]
 
 [tool.ruff.lint.isort]
-section-order = ["future", "standard-library", "third-party", "ricardo", "first-party", "local-folder"]
+section-order = ["future", "standard-library", "third-party", "first-party", "local-folder"]
 force-sort-within-sections = true
-
-[tool.ruff.lint.isort.sections]
-ricardo = ["ricardo"]  # Put ricardo imports in their own section
