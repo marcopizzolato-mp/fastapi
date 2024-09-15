@@ -1,8 +1,9 @@
 """ORM Model."""
 
-from fastapi_app.app.models.base import Base
 from sqlalchemy import Column, DateTime, Integer
 from sqlalchemy.sql import func
+
+from fastapi_application.app.models.base import Base
 
 
 class Dummy(Base):

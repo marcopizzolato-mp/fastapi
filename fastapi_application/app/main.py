@@ -3,11 +3,12 @@
 import sys
 
 from fastapi import FastAPI
-from fastapi_app.app import api_utils
-from fastapi_app.app.api.routers.routers import api_router
-from fastapi_app.app.models.base import init_db
 from loguru import logger
 from starlette.middleware.cors import CORSMiddleware
+
+from fastapi_application.app import api_utils
+from fastapi_application.app.api.routers.routers import api_router
+from fastapi_application.app.models.base import init_db
 
 
 def init_app() -> FastAPI:
