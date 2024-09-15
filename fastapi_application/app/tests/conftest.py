@@ -6,14 +6,13 @@ import pathlib
 from typing import TypeAlias
 
 from fastapi.testclient import TestClient
+from fastapi_app.app.db.session import get_db_session_dep
+from fastapi_app.app.main import app, init_db
+from fastapi_app.app.models.base import Base
 import pytest
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session as SQLAlchemySession
 from sqlalchemy.orm import sessionmaker
-
-from ricardo.ee.fastapi_app.app.db.session import get_db_session_dep
-from ricardo.ee.fastapi_app.app.main import app, init_db
-from ricardo.ee.fastapi_app.app.models.base import Base
 
 ROOT_DIR = pathlib.Path(__file__).parent
 db_path_testing = pathlib.Path(ROOT_DIR, "testing_sqlite_db.db")

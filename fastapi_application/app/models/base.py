@@ -1,8 +1,7 @@
 """Base class for SQLAlchemy models."""
 
+from fastapi_app.app.db.session import engine
 from sqlalchemy.orm import DeclarativeBase, declared_attr
-
-from ricardo.ee.fastapi_app.app.db.session import engine
 
 
 class Base(DeclarativeBase):

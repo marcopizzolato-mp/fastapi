@@ -1,13 +1,12 @@
 """FastAPI endpoints for Parks."""
 
 from fastapi import APIRouter, Depends, HTTPException, Response, status
+from fastapi_app.app.db.db_utils import query_table_as_dataframe
+from fastapi_app.app.db.session import get_db_session_dep
+from fastapi_app.app.models.parks import Parks
+from fastapi_app.app.schemas.schemas import ParksSchema
 from sqlalchemy import select
 from sqlalchemy.orm import Session
-
-from ricardo.ee.fastapi_app.app.db.db_utils import query_table_as_dataframe
-from ricardo.ee.fastapi_app.app.db.session import get_db_session_dep
-from ricardo.ee.fastapi_app.app.models.parks import Parks
-from ricardo.ee.fastapi_app.app.schemas.schemas import ParksSchema
 
 parks_router = APIRouter()
 

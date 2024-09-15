@@ -1,11 +1,10 @@
 """ORM Model."""
 
+from fastapi_app.app.models.base import Base
+from fastapi_app.app.models.parks import Parks
+from fastapi_app.app.models.visitors import Visitors
 from sqlalchemy import Column, Date, ForeignKey, Integer
 from sqlalchemy.orm import relationship
-
-from ricardo.ee.fastapi_app.app.models.base import Base
-from ricardo.ee.fastapi_app.app.models.parks import Parks
-from ricardo.ee.fastapi_app.app.models.visitors import Visitors
 
 
 class ParkVisits(Base):
