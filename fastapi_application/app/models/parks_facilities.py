@@ -18,7 +18,6 @@ class ParkFacilities(Base):
     park_id = Column(Integer, ForeignKey(Parks.park_id), nullable=False)
     facility_type = Column(String(50), nullable=False)
     name = Column(String(100), nullable=False)
-    type = Column(String(100), nullable=False)
     working = Column(Boolean, nullable=False)
     description = Column(Unicode(500))
     created_at = Column(DateTime(timezone=True), server_default=func.now())
