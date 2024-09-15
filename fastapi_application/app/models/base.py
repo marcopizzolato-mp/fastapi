@@ -4,8 +4,6 @@ import re
 
 from sqlalchemy.orm import DeclarativeBase, declared_attr
 
-from fastapi_application.app.db.session import engine
-
 
 class Base(DeclarativeBase):
     """Base class for SQLAlchemy models."""
@@ -43,12 +41,3 @@ class Base(DeclarativeBase):
     #         dict: A dictionary containing the schema name.
     #     """
     #     return {"schema": "public"}  # Specify the schema here
-
-
-def init_db() -> None:
-    """Initialize the database using the Metadata creating tables if they don't exist.
-
-    Returns:
-        None
-    """
-    Base.metadata.create_all(bind=engine)
