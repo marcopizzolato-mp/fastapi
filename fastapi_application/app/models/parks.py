@@ -18,7 +18,6 @@ class Parks(Base):
     established_date = Column(Date, nullable=False)
     description = Column(Unicode(500))
     type = Column(String(50), nullable=False)
-    geometry_id = Column(Integer, nullable=False)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     modified_at = Column(DateTime(timezone=True), onupdate=func.now())
 
@@ -29,4 +28,6 @@ class Parks(Base):
         "ConservationEfforts", back_populates="park_rel"
     )
     facilities_rel = relationship("ParkFacilities", back_populates="park_rel")
-    park_geom_rel = relationship("ParkGeometry", back_populates="park_rel")
+    park_geom_rel = relationship(
+        "GeometryParks", uselist=False, back_populates="park_rel"
+    )
