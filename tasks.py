@@ -13,7 +13,7 @@ from pretty_html_table import build_table
 import tablib
 
 SRC_ROOT_DIR = Path(__file__).resolve().parent / "ricardo" / "ee"
-SRC_STEM_DIR = "fastapi"
+SRC_STEM_DIR = "fastapi_app"
 SRC_DIR = SRC_ROOT_DIR / SRC_STEM_DIR
 
 
@@ -200,4 +200,4 @@ def license_check(
 @task
 def create_jupyter_kernel(ctx: Context) -> None:
     """Create a jupyter kernel from the virtual environment."""
-    ctx.run("poetry run python -m ipykernel install --user --name=fastapi")
+    ctx.run("poetry run python -m ipykernel install --user --name=fastapi_app")

@@ -1,4 +1,4 @@
-"""modify table visitors adding strt and end date for the visit
+"""modify table visitors adding strt and end date for the visit.
 
 Revision ID: 08ffd8f8878a
 Revises: 3220c42dd31e
@@ -20,6 +20,7 @@ depends_on: str | Sequence[str] | None = None
 
 
 def upgrade() -> None:
+    """Upgrade database."""
     # Remove the visit_date column
     op.drop_column("visitors", "visit_date")
 
@@ -29,6 +30,7 @@ def upgrade() -> None:
 
 
 def downgrade() -> None:
+    """Downgrade database."""
     # Remove the new columns
     op.drop_column("visitors", "visit_start_date")
     op.drop_column("visitors", "visit_end_date")

@@ -1,4 +1,4 @@
-"""modify table species splitting species_park in their own table
+"""modify table species splitting species_park in their own table.
 
 Revision ID: 8d45c8cb5197
 Revises: 0176567ad929
@@ -20,6 +20,7 @@ depends_on: str | Sequence[str] | None = None
 
 
 def upgrade() -> None:
+    """Upgrade database."""
     op.drop_column("species", "park_id")
     op.add_column("species", sa.Column("description", sa.Unicode(500)))
 
@@ -38,6 +39,7 @@ def upgrade() -> None:
 
 
 def downgrade() -> None:
+    """Downgrade database."""
     op.add_column("species", sa.Column("park_id", sa.Integer()))
     op.drop_column("species", "description")
     op.drop_table("parks_species")
