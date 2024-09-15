@@ -31,7 +31,16 @@ class ParksSchema(BaseModel):
     visitors_rel: list["VisitorsSchema"] | None
     conservation_efforts_rel: list["ConservationEffortsSchema"] | None
     park_facilities_rel: list["ParkFacilitiesSchema"] | None
-    park_geom_rel: list["ParkGeometrySchema"] | None
+    park_geom_rel: list["GeometryParksSchema"] | None
+
+
+class GeometryParksSchema(BaseModel):
+    """Response model for Parks Geometry."""
+
+    geometry_id: int
+    geometry: list[float] | list[list[float]] | list[list[list[float]]]
+    created_at: date
+    modified_at: date
 
 
 class SpeciesSchema(BaseModel):
@@ -42,7 +51,22 @@ class SpeciesSchema(BaseModel):
     scientific_name: str
     status: str
     habitat: str
-    description: str
+    description: str | None
+    created_at: date
+    modified_at: date
+
+    # Fields from the Relationships
+    species_rel: list["ParkSpeciesSchema"] | None
+
+
+class ParkSpeciesSchema(BaseModel):
+    """Response model for Park Species."""
+
+    park_species_id: int
+    park_id: int
+    species_id: int
+    created_at: date
+    modified_at: date
 
 
 class VisitorsSchema(BaseModel):
@@ -51,19 +75,24 @@ class VisitorsSchema(BaseModel):
     visitor_id: int
     name: str
     email: str
+    marketing_consent: bool
+    created_at: date
+    modified_at: date
 
     # Fields from the Relationships
-    visits_rel: list["VisitsSchema"] | None
+    visits_rel: list["ParkVisitsSchema"] | None
 
 
-class VisitsSchema(BaseModel):
+class ParkVisitsSchema(BaseModel):
     """Response model for Visits."""
 
     visit_id: int
-    visitor_id: int
     park_id: int
+    visitor_id: int
     visit_start_date: date
-    visit_end_date: date
+    visit_end_date: date | None
+    created_at: date
+    modified_at: date
 
 
 class ConservationEffortsSchema(BaseModel):
@@ -86,7 +115,22 @@ class ParkFacilitiesSchema(BaseModel):
     park_id: int
     facility_type: str
     name: str
+    working: bool
     description: str | None
+    created_at: date
+    modified_at: date
+
+    # Fields from the Relationships
+    park_facilities_rel: list["GeometryFacilitiesSchema"] | None
+
+
+class GeometryFacilitiesSchema(BaseModel):
+    """Response model for Facilities Geometry."""
+
+    geometry_id: int
+    geometry: list[float] | list[list[float]] | list[list[list[float]]]
+    created_at: date
+    modified_at: date
 
     # class Config:
     #     orm_mode = True
