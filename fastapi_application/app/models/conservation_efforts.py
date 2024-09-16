@@ -1,7 +1,5 @@
 """ORM Model."""
 
-from typing import ClassVar
-
 from sqlalchemy import Column, Date, DateTime, ForeignKey, Integer, String, Unicode
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
@@ -14,7 +12,7 @@ class ConservationEfforts(Base):
     """ORM Model for conservation efforts table."""
 
     __tablename__ = "conservation_efforts"
-    __table_args__: ClassVar[dict] = {"schema": "natural_parks_schema"}
+    __table_args__ = {"schema": "natural_parks_schema"}  # noqa RUF012
 
     effort_id = Column(Integer, primary_key=True, index=True)
     park_id = Column(Integer, ForeignKey(Parks.park_id), nullable=False)
