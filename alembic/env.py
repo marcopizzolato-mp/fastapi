@@ -67,8 +67,8 @@ def run_migrations_online() -> None:
     config.set_main_option(
         "sqlalchemy.url",
         "postgresql+psycopg2://"
-        f"{os.getenv("DEFAULT_POSTGRES_USER")}:{os.getenv("DEFAULT_POSTGRES_PASSWORD")}@"
-        f"{os.getenv("DEFAULT_POSTGRES_HOST")}/{os.getenv("DEFAULT_DB_NAME")}",
+        f"{os.getenv("POSTGRES_USER")}:{os.getenv("POSTGRES_PASSWORD")}@"
+        f"{os.getenv("POSTGRES_HOST")}/{os.getenv("DB_NAME")}",
     )
 
     section_config = config.get_section(ini_section) or {}
@@ -79,7 +79,12 @@ def run_migrations_online() -> None:
     )
 
     with connectable.connect() as connection:
-        context.configure(connection=connection, target_metadata=target_metadata)
+        context.configure(
+            connection=connection,
+            target_metadata=target_metadata,
+            version_table="alembic_version_parks",
+            include_schemas=True,
+        )
 
         with context.begin_transaction():
             context.run_migrations()
