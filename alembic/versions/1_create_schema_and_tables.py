@@ -1,4 +1,4 @@
-"""Create schema and tables
+"""Create schema and tables.
 
 Revision ID: 1
 Revises:
@@ -214,7 +214,6 @@ def upgrade() -> None:
 
 def downgrade() -> None:
     """Downgrade database."""
-
     op.drop_table("geometry_facilities", schema="natural_parks_schema")
     op.drop_table("parks_visits", schema="natural_parks_schema")
     op.drop_table("parks_species", schema="natural_parks_schema")
@@ -224,5 +223,5 @@ def downgrade() -> None:
     op.drop_table("visitors", schema="natural_parks_schema")
     op.drop_table("species", schema="natural_parks_schema")
     op.drop_table("parks", schema="natural_parks_schema")
-    
-    #-- End Alembic commands 
+
+    # -- End Alembic commands
