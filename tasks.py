@@ -4,7 +4,7 @@ from pathlib import Path
 
 from invoke import Context, task
 
-SRC_ROOT_DIR = Path(__file__).resolve().parent / "ricardo" / "ee"
+SRC_ROOT_DIR = Path(__file__).resolve().parent
 SRC_STEM_DIR = "fastapi_application"
 SRC_DIR = SRC_ROOT_DIR / SRC_STEM_DIR
 
