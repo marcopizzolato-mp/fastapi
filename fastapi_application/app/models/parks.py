@@ -10,7 +10,7 @@ from fastapi_application.app.models.base import Base
 class Parks(Base):
     """ORM Model for Parks table."""
 
-    __table_args__ = {"schema": "natural_parks_schema"}
+    __table_args__ = {"schema": "natural_parks_schema"}  # noqa RUF012
 
     park_id = Column(Integer, primary_key=True, index=True)
     name = Column(String(100), nullable=False)

@@ -14,14 +14,14 @@
 
 # +
 import pandas as pd
-from fastapi_app.app.db.session import get_db_session
-from fastapi_app.app.models.parks import Parks
+from fastapi_application.app.db.session import get_db_session
+from fastapi_application.app.models.parks import Parks
 
-from fastapi_app.app.models.parks_visits import ParkVisits
-from fastapi_app.app.models.visitors import Visitors
-from fastapi_app.app.models.species import Species
-from fastapi_app.app.models.parks_species import ParksSpecies
-from fastapi_app.app.models.parks_facilities import ParkFacilities
+from fastapi_application.app.models.parks_visits import ParkVisits
+from fastapi_application.app.models.visitors import Visitors
+from fastapi_application.app.models.species import Species
+from fastapi_application.app.models.parks_species import ParksSpecies
+from fastapi_application.app.models.parks_facilities import ParkFacilities
 
 # -
 

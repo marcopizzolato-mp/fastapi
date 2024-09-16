@@ -10,7 +10,7 @@ from fastapi_application.app.models.base import Base
 class Species(Base):
     """ORM Model for Species table."""
 
-    __table_args__ = {"schema": "natural_parks_schema"}
+    __table_args__ = {"schema": "natural_parks_schema"}  # noqa RUF012
 
     species_id = Column(Integer, primary_key=True, index=True)
     common_name = Column(String(100), nullable=False)

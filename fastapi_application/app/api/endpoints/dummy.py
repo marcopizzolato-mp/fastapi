@@ -1,12 +1,13 @@
 """FastAPI endpoints."""
 
 from fastapi import APIRouter, Depends, Response, status
-from fastapi_app.app.db.db_utils import query_table_as_dataframe
-from fastapi_app.app.db.session import get_db_session_dep
-from fastapi_app.app.models.dummy_orm import Dummy
-from fastapi_app.app.schemas.schemas import DummySchema
 from sqlalchemy import select
 from sqlalchemy.orm import Session
+
+from fastapi_application.app.db.db_utils import query_table_as_dataframe
+from fastapi_application.app.db.session import get_db_session_dep
+from fastapi_application.app.models.dummy_orm import Dummy
+from fastapi_application.app.schemas.schemas import DummySchema
 
 dummy_router = APIRouter()
 
